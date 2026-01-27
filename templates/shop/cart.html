@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+
+        <h1 class="section-title">Shopping Cart</h1>
+
+        {% if products %}
+
+        <div style="display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start;">
+
+            <!-- LEFT: CART TABLE -->
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <div style="overflow-x: auto;">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for product in products %}
+                            <tr>
+                                <td>
+                                    <div style="display: flex; gap: 12px; align-items: center;">
+                                        {% if product.image %}
+                                        <img src="{{ url_for('static', filename='uploads/' ~ product.image) }}"
+                                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; flex-shrink: 0;">
+                                        {% endif %}
+                                        <span style="font-weight: 500;">{{ product.name }}</span>
+                                    </div>
+                                </td>
+                                <td style="text-align: center;">₹{{ "%.2f"|format(product.price) }}</td>
+                                <td style="text-align: center;"><strong>{{ product.qty }}</strong></td>
+                                <td style="text-align: center; font-weight: 600;">₹{{ "%.2f"|format(product.subtotal) }}
+                                </td>
+                                <td style="text-align: center;">
+                                    <a href="{{ url_for('remove_from_cart', product_id=product.id) }}"
+                                        class="remove-btn" title="Remove from cart">
+                                        ✕
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RIGHT: ORDER SUMMARY -->
+            <div class="card cart-summary-box">
+                <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Order Summary</h2>
+
+                <div style="border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 16px;">
+                    <div class="summary-row">
+                        <span>Items</span>
+                        <span style="font-weight: 600;">{{ products|length }}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Total Quantity</span>
+                        <span style="font-weight: 600;">{{ products|map(attribute='qty')|sum }}</span>
+                    </div>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Total Amount</span>
+                    <span>₹{{ "%.2f"|format(total) }}</span>
+                </div>
+
+                <a href="/checkout" class="btn"
+                    style="width: 100%; margin-top: 20px; padding: 12px; text-align: center; font-size: 15px;">
+                    Proceed to Checkout
+                </a>
+
+                <a href="/products"
+                    style="display: block; text-align: center; margin-top: 12px; color: var(--secondary); text-decoration: none; font-weight: 500; transition: var(--transition);">
+                    ← Continue Shopping
+                </a>
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <!-- EMPTY CART STATE -->
+        <div class="card" style="text-align: center; max-width: 500px; margin: auto; padding: 60px 30px;">
+            <div style="font-size: 64px; margin-bottom: 16px;">🛒</div>
+            <h2 style="font-size: 24px; margin-bottom: 12px;">Your Cart is Empty</h2>
+            <p style="color: var(--text-light); margin-bottom: 24px;">Add some products to your cart to get started.</p>
+            <a href="/products" class="btn" style="padding: 12px 24px;">Browse Products</a>
+        </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+<style>
+    @media (max-width: 768px) {
+        div[style*="grid-template-columns: 1fr 380px"] {
+            grid-template-columns: 1fr !important;
+        }
+
+        .cart-table th:nth-child(3),
+        .cart-table th:nth-child(4),
+        .cart-table td:nth-child(3),
+        .cart-table td:nth-child(4) {
+            display: none;
+        }
+
+        .cart-table th:nth-child(2),
+        .cart-table td:nth-child(2) {
+            display: none;
+        }
+    }
+</style>
+
+{% endblock %}

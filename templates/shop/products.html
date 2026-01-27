@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Our Products</h1>
+
+        {% if products %}
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <!-- Product Image -->
+                {% if product.image %}
+                <img src="{{ url_for('static', filename='uploads/' ~ product.image) }}" alt="{{ product.name }}"
+                    class="product-image">
+                {% else %}
+                <div class="product-image"
+                    style="display: flex; align-items: center; justify-content: center; background: var(--bg-light); color: var(--text-light);">
+                    <span>No Image</span>
+                </div>
+                {% endif %}
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <p class="product-description">{{ product.description[:80] }}...</p>
+                    <p class="product-price">₹{{ "%.2f"|format(product.price) }}</p>
+
+                    <!-- Action Buttons -->
+                    <div class="product-actions">
+                        <a href="/product/{{ product.id }}" class="btn-view-detail">View Details</a>
+                        <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn-add-cart">Add to
+                            Cart</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+
+        <!-- Empty State -->
+        <div class="card" style="text-align: center; max-width: 500px; margin: auto; padding: 50px 30px;">
+            <h3 style="font-size: 24px; margin-bottom: 12px;">No Products Available</h3>
+            <p style="color: var(--text-light); margin-bottom: 24px;">Products will be available soon. Check back later!
+            </p>
+            <a href="/" class="btn">Go to Home</a>
+        </div>
+
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

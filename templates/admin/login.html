@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container" style="max-width: 450px;">
+
+        <!-- ADMIN LOGIN HEADER -->
+        <div style="text-align: center; margin-bottom: 32px;">
+            <h1 class="section-title" style="margin: 0 0 8px 0; font-size: 28px;">Admin Control Panel</h1>
+            <p style="color: var(--text-light);">Secure login for administrators only</p>
+        </div>
+
+        <!-- ERROR MESSAGE -->
+        {% if error %}
+        <div
+            style="background: #fee2e2; color: #991b1b; padding: 14px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #dc2626; display: flex; gap: 10px; align-items: center;">
+            <span style="font-size: 20px;">⚠️</span>
+            <span>{{ error }}</span>
+        </div>
+        {% endif %}
+
+        <!-- LOGIN FORM -->
+        <form method="POST" class="contact-form">
+            <div class="form-group">
+                <label for="username">Admin Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Admin Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 15px;">
+                🔐 Sign In
+            </button>
+        </form>
+
+        <!-- INFO BOX -->
+        <div
+            style="background: #dbeafe; border-left: 4px solid var(--primary); padding: 16px; border-radius: 6px; margin-top: 24px; font-size: 13px; color: #0a2540;">
+            <p style="margin: 0 0 8px 0;"><strong>Demo Credentials:</strong></p>
+            <p style="margin: 0;">Username: <code
+                    style="background: rgba(0,0,0,0.1); padding: 2px 4px; border-radius: 3px;">softline_admin</code></p>
+            <p style="margin: 4px 0;">Password: <code
+                    style="background: rgba(0,0,0,0.1); padding: 2px 4px; border-radius: 3px;">admin@123</code></p>
+        </div>
+
+        <!-- BACK LINK -->
+        <p style="text-align: center; margin-top: 24px;">
+            <a href="/" style="color: var(--secondary); text-decoration: none; font-weight: 500;">← Back to Website</a>
+        </p>
+
+    </div>
+</section>
+
+<style>
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--text);
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 14px;
+        font-family: inherit;
+        transition: var(--transition);
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: var(--secondary);
+        box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+    }
+
+    .contact-form {
+        margin: 0;
+    }
+</style>
+
+{% endblock %}

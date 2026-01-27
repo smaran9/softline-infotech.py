@@ -1,0 +1,630 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ================= PRODUCT DETAIL HERO ================= -->
+<section class="product-hero">
+    <div class="container" style="text-align: center;">
+        <a href="/products"
+            style="color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; font-weight: 500; margin-bottom: 12px; display: inline-block;">
+            ← Back to Shop
+        </a>
+        <h1 class="hero-title" style="color: white; margin-top: 12px;">Product Details</h1>
+    </div>
+</section>
+
+<!-- ================= PRODUCT DETAIL CONTENT ================= -->
+<section class="section product-detail-section">
+    <div class="container">
+
+        {% if product %}
+
+        <div class="product-detail-grid">
+            <!-- LEFT: PRODUCT IMAGE -->
+            <div class="product-image-container">
+                {% if product.image %}
+                <div class="product-image-wrapper">
+                    <img src="{{ url_for('static', filename='uploads/' ~ product.image) }}" alt="{{ product.name }}"
+                        class="product-detail-image">
+                </div>
+                {% else %}
+                <div class="product-image-placeholder">
+                    <div style="font-size: 64px;">📷</div>
+                    <p>No Image Available</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- RIGHT: PRODUCT INFO -->
+            <div class="product-info-container">
+
+                <!-- CATEGORY BADGE -->
+                {% if product.category_name %}
+                <div class="category-badge">
+                    {{ product.category_name }}
+                </div>
+                {% endif %}
+
+                <!-- PRODUCT NAME -->
+                <h1 class="product-title">{{ product.name }}</h1>
+
+                <!-- RATING & REVIEWS (PLACEHOLDER) -->
+                <div class="product-rating">
+                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                    <span class="rating-text">(125 Reviews)</span>
+                </div>
+
+                <!-- PRICE SECTION -->
+                <div class="price-section">
+                    <div class="price-label">Price</div>
+                    <div class="price-display">₹{{ "%.2f"|format(product.price) }}</div>
+                    <p class="price-note">Inclusive of all taxes</p>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="description-section">
+                    <h3>Description</h3>
+                    <p class="product-description">
+                        {{ product.description }}
+                    </p>
+                </div>
+
+                <!-- KEY BENEFITS -->
+                <div class="benefits-section">
+                    <h3>Why Buy This?</h3>
+                    <ul class="benefits-list">
+                        <li>Genuine product with warranty</li>
+                        <li>Fast delivery within 24-48 hours</li>
+                        <li>Easy returns and exchanges</li>
+                        <li>24/7 customer support</li>
+                    </ul>
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="action-buttons">
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn-primary">
+                        Add to Cart
+                    </a>
+                    <a href="/cart" class="btn-secondary">
+                        View Cart
+                    </a>
+                </div>
+
+                <!-- ADDITIONAL INFO -->
+                <div class="info-box">
+                    <div class="info-item">
+                        <div class="info-icon">🚚</div>
+                        <div>
+                            <div class="info-title">Free Delivery</div>
+                            <div class="info-text">On orders above ₹500</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🛡️</div>
+                        <div>
+                            <div class="info-title">1 Year Warranty</div>
+                            <div class="info-text">Full coverage protection</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">↩️</div>
+                        <div>
+                            <div class="info-title">Easy Returns</div>
+                            <div class="info-text">30-day return window</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= RELATED PRODUCTS ================= -->
+        <div class="related-section">
+            <h2 class="section-title">You Might Also Like</h2>
+            <p class="section-subtitle">Explore similar products</p>
+
+            <div class="related-grid">
+                <div class="related-card">
+                    <div class="related-placeholder">
+                        <span>📦</span>
+                    </div>
+                    <h4>CCTV Camera Kit</h4>
+                    <p class="related-price">₹8,999</p>
+                    <a href="/products" class="related-link">View Product</a>
+                </div>
+
+                <div class="related-card">
+                    <div class="related-placeholder">
+                        <span>💻</span>
+                    </div>
+                    <h4>Laptop Cooling Pad</h4>
+                    <p class="related-price">₹1,299</p>
+                    <a href="/products" class="related-link">View Product</a>
+                </div>
+
+                <div class="related-card">
+                    <div class="related-placeholder">
+                        <span>🔧</span>
+                    </div>
+                    <h4>Tool Kit Pro</h4>
+                    <p class="related-price">₹3,499</p>
+                    <a href="/products" class="related-link">View Product</a>
+                </div>
+
+                <div class="related-card">
+                    <div class="related-placeholder">
+                        <span>🔌</span>
+                    </div>
+                    <h4>Power Supply Unit</h4>
+                    <p class="related-price">₹2,499</p>
+                    <a href="/products" class="related-link">View Product</a>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+
+        <!-- PRODUCT NOT FOUND -->
+        <div class="not-found-container">
+            <div class="not-found-card">
+                <div class="not-found-icon">🔍</div>
+                <h2>Product Not Found</h2>
+                <p>The product you're looking for doesn't exist or has been removed.</p>
+                <a href="/products" class="btn-primary" style="margin-top: 20px;">Browse All Products</a>
+            </div>
+        </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+<style>
+    /* ============= PRODUCT HERO ============= */
+    .product-hero {
+        background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
+        color: white;
+        padding: 60px 20px;
+        position: relative;
+    }
+
+    .hero-title {
+        font-size: clamp(32px, 8vw, 44px);
+        font-weight: 800;
+        margin: 0;
+    }
+
+    /* ============= PRODUCT DETAIL SECTION ============= */
+    .product-detail-section {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+
+    .product-detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: start;
+        margin-bottom: 80px;
+    }
+
+    /* ============= PRODUCT IMAGE ============= */
+    .product-image-container {
+        animation: fade-slide-up 0.6s ease-out;
+    }
+
+    .product-image-wrapper {
+        background: white;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        padding: 0;
+        position: sticky;
+        top: 100px;
+    }
+
+    .product-detail-image {
+        width: 100%;
+        height: auto;
+        max-height: 600px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .product-image-placeholder {
+        background: white;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-light);
+        font-weight: 500;
+    }
+
+    /* ============= PRODUCT INFO ============= */
+    .product-info-container {
+        animation: fade-slide-up 0.6s ease-out 0.1s backwards;
+    }
+
+    .category-badge {
+        display: inline-block;
+        background: var(--secondary);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        letter-spacing: 0.5px;
+    }
+
+    .product-title {
+        font-size: clamp(28px, 6vw, 40px);
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 12px;
+        line-height: 1.2;
+    }
+
+    .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .stars {
+        font-size: 16px;
+    }
+
+    .rating-text {
+        font-size: 13px;
+        color: var(--text-light);
+    }
+
+    /* ============= PRICE SECTION ============= */
+    .price-section {
+        background: white;
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        margin-bottom: 24px;
+        border: 2px solid var(--secondary);
+    }
+
+    .price-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    .price-display {
+        font-size: clamp(32px, 8vw, 48px);
+        font-weight: 800;
+        color: var(--secondary);
+        margin-bottom: 8px;
+    }
+
+    .price-note {
+        font-size: 12px;
+        color: var(--text-light);
+        margin: 0;
+    }
+
+    /* ============= DESCRIPTION ============= */
+    .description-section {
+        margin-bottom: 28px;
+    }
+
+    .description-section h3 {
+        font-size: clamp(18px, 4vw, 22px);
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 12px;
+    }
+
+    .product-description {
+        font-size: clamp(14px, 3.5vw, 16px);
+        color: var(--text);
+        line-height: 1.8;
+        margin: 0;
+    }
+
+    /* ============= BENEFITS ============= */
+    .benefits-section {
+        margin-bottom: 28px;
+    }
+
+    .benefits-section h3 {
+        font-size: clamp(18px, 4vw, 22px);
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 12px;
+    }
+
+    .benefits-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .benefits-list li {
+        padding: 8px 0;
+        font-size: clamp(14px, 3.5vw, 16px);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .benefits-list li:before {
+        content: '✓';
+        color: var(--secondary);
+        font-weight: 700;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+    /* ============= ACTION BUTTONS ============= */
+    .action-buttons {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 28px;
+    }
+
+    .btn-primary {
+        flex: 1;
+        padding: 14px 24px;
+        background: var(--secondary);
+        color: white;
+        border: none;
+        border-radius: var(--radius-sm);
+        font-weight: 700;
+        font-size: clamp(14px, 3vw, 16px);
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .btn-primary:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary {
+        flex: 1;
+        padding: 14px 24px;
+        background: white;
+        color: var(--secondary);
+        border: 2px solid var(--secondary);
+        border-radius: var(--radius-sm);
+        font-weight: 700;
+        font-size: clamp(14px, 3vw, 16px);
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .btn-secondary:hover {
+        background: var(--secondary);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    /* ============= INFO BOX ============= */
+    .info-box {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 20px;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .info-icon {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+
+    .info-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 4px;
+    }
+
+    .info-text {
+        font-size: 12px;
+        color: var(--text-light);
+    }
+
+    /* ============= RELATED SECTION ============= */
+    .related-section {
+        margin-top: 80px;
+        padding-top: 60px;
+        border-top: 2px solid var(--border);
+    }
+
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: clamp(20px, 4vw, 28px);
+    }
+
+    .related-card {
+        background: white;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        padding: clamp(20px, 3vw, 24px);
+        text-align: center;
+        transition: all 0.3s ease;
+        animation: fade-slide-up 0.6s ease-out backwards;
+    }
+
+    .related-card:nth-child(1) {
+        animation-delay: 0.05s;
+    }
+
+    .related-card:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+
+    .related-card:nth-child(3) {
+        animation-delay: 0.15s;
+    }
+
+    .related-card:nth-child(4) {
+        animation-delay: 0.2s;
+    }
+
+    .related-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .related-placeholder {
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(135deg, #dbeafe 0%, #cffafe 100%);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        margin-bottom: 16px;
+    }
+
+    .related-card h4 {
+        font-size: clamp(14px, 3vw, 16px);
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 8px;
+    }
+
+    .related-price {
+        font-size: clamp(16px, 4vw, 20px);
+        font-weight: 800;
+        color: var(--secondary);
+        margin-bottom: 12px;
+    }
+
+    .related-link {
+        display: inline-block;
+        padding: 8px 16px;
+        background: var(--secondary);
+        color: white;
+        text-decoration: none;
+        border-radius: var(--radius-sm);
+        font-size: 13px;
+        font-weight: 700;
+        transition: all 0.3s ease;
+    }
+
+    .related-link:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+    }
+
+    /* ============= NOT FOUND ============= */
+    .not-found-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 500px;
+    }
+
+    .not-found-card {
+        background: white;
+        border-radius: var(--radius-lg);
+        padding: clamp(40px, 8vw, 60px);
+        text-align: center;
+        max-width: 500px;
+        box-shadow: var(--shadow-md);
+    }
+
+    .not-found-icon {
+        font-size: 80px;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .not-found-card h2 {
+        font-size: clamp(24px, 5vw, 32px);
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 12px;
+    }
+
+    .not-found-card p {
+        font-size: clamp(14px, 3.5vw, 16px);
+        color: var(--text-light);
+        line-height: 1.8;
+    }
+
+    /* ============= ANIMATIONS ============= */
+    @keyframes fade-slide-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ============= RESPONSIVE ============= */
+    @media (max-width: 768px) {
+        .product-detail-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .product-image-wrapper {
+            position: static;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            width: 100%;
+        }
+
+        .info-box {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ============= ACCESSIBILITY ============= */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+</style>
+
+{% endblock %}

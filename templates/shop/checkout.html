@@ -1,0 +1,353 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Cart Data Stored in Data Attributes -->
+<div id="cart-container" data-cart='{{ products | tojson | safe }}' data-total="{{ total }}" style="display: none;">
+</div>
+
+<script>
+    // Initialize cart data from DOM data attributes
+    function initializeCartData() {
+        const cartContainer = document.getElementById('cart-container');
+        if (!cartContainer) {
+            console.error('❌ Cart container not found');
+            window.cartData = { products: [], total: 0, itemCount: 0 };
+            return;
+        }
+
+        try {
+            const productsJson = cartContainer.getAttribute('data-cart');
+            const total = parseFloat(cartContainer.getAttribute('data-total')) || 0;
+
+            console.log('[CART DEBUG] Raw Cart JSON:', productsJson);
+            console.log('[CART DEBUG] Total from DOM:', total);
+
+            if (!productsJson) {
+                console.warn('[CART DEBUG] No cart data in DOM attributes');
+                window.cartData = { products: [], total: 0, itemCount: 0 };
+                return;
+            }
+
+            const products = JSON.parse(productsJson) || [];
+
+            window.cartData = {
+                products: products,
+                total: total,
+                itemCount: products.length
+            };
+
+            console.log('✅ CART INITIALIZED:', {
+                itemCount: window.cartData.itemCount,
+                total: window.cartData.total,
+                products: window.cartData.products.map(p => ({ name: p.name, qty: p.qty, price: p.price }))
+            });
+        } catch (error) {
+            console.error('❌ Error parsing cart data:', error);
+            console.error('Stack:', error.stack);
+            window.cartData = { products: [], total: 0, itemCount: 0 };
+        }
+    }
+
+    // Initialize on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeCartData);
+    } else {
+        initializeCartData();
+    }
+
+    // Add safeguard: if cartData wasn't set, ensure it exists
+    if (!window.cartData) {
+        window.cartData = { products: [], total: 0, itemCount: 0 };
+        console.warn('[CART DEBUG] window.cartData was undefined, initialized with empty cart');
+    }
+</script>
+
+<section class="section">
+    <div class="container" style="max-width: 900px;">
+
+        <h1 class="section-title">Checkout</h1>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+
+            <!-- LEFT: ORDER SUMMARY -->
+            <div>
+                <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Order Summary</h2>
+                <div class="card" style="padding: 20px;">
+                    {% if products %}
+                    {% for product in products %}
+                    <div style="display: flex; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 15px;"
+                        data-product-image="{% if product.image %}{{ url_for('static', filename='uploads/' ~ product.image) }}{% endif %}">
+                        {% if product.image %}
+                        <img src="{{ url_for('static', filename='uploads/' ~ product.image) }}"
+                            style="width: 70px; height: 70px; object-fit: cover; border-radius: 6px; flex-shrink: 0;">
+                        {% endif %}
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">{{ product.name }}</h3>
+                            <p style="font-size: 13px; color: #6b7280; margin-bottom: 4px;">
+                                Qty: <strong>{{ product.qty }}</strong>
+                            </p>
+                            <p style="font-size: 13px; color: #6b7280;">
+                                ₹{{ "%.2f"|format(product.price) }} × {{ product.qty }} = <strong>₹{{
+                                    "%.2f"|format(product.subtotal) }}</strong>
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <div style="border-top: 2px solid #e5e7eb; padding-top: 15px; margin-top: 15px;">
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: var(--primary);">
+                            <span>Total:</span>
+                            <span>₹{{ "%.2f"|format(total) }}</span>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p style="color: #6b7280;">No items in cart.</p>
+                    <a href="/products" class="btn" style="margin-top: 15px; display: inline-block;">Continue
+                        Shopping</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- RIGHT: CHECKOUT FORM -->
+            <div>
+                <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Shipping Details</h2>
+
+                {% if error %}
+                <div
+                    style="background: #fee2e2; color: #991b1b; padding: 14px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #dc2626;">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <form id="checkoutForm" class="checkout-form">
+                    <div id="formErrors"></div>
+
+                    <div class="form-group">
+                        <label for="name">Full Name <span style="color: #dc2626;">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required autocomplete="name">
+                        <small style="color: #6b7280; font-size: 12px; margin-top: 4px; display: block;">This will
+                            appear on your invoice</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span style="color: #dc2626;">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="9876543210" required pattern="[0-9]{10}"
+                            autocomplete="tel" inputmode="numeric">
+                        <small style="color: #6b7280; font-size: 12px; margin-top: 4px; display: block;">10-digit Indian
+                            mobile number (order will be confirmed via WhatsApp)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Complete Delivery Address <span style="color: #dc2626;">*</span></label>
+                        <textarea id="address" name="address"
+                            placeholder="House/Flat No., Building Name, Street, City, State, Zip Code" rows="4" required
+                            autocomplete="street-address"></textarea>
+                        <small style="color: #6b7280; font-size: 12px; margin-top: 4px; display: block;">Please provide
+                            complete address for timely delivery</small>
+                    </div>
+
+                    <button type="submit" class="btn"
+                        style="width: 100%; padding: 14px; font-size: 16px; font-weight: 600; background: #25d366; border: none; color: white; cursor: pointer; border-radius: 6px; transition: all 0.25s ease;">
+                        📱 Confirm & Place Order
+                    </button>
+
+                    <a href="/cart"
+                        style="display: block; text-align: center; margin-top: 12px; color: var(--secondary); text-decoration: none; font-weight: 500; font-size: 14px;">
+                        ← Back to Cart
+                    </a>
+                </form>
+
+                <!-- Info Box -->
+                <div
+                    style="background: linear-gradient(135deg, #dbeafe 0%, #cffafe 100%); border-left: 4px solid #0a2540; padding: 16px; border-radius: 6px; margin-top: 20px; font-size: 13px; color: #0a2540;">
+                    <p style="margin: 0 0 8px 0; font-weight: 700;">✅ Secure & Simple Process:</p>
+                    <ul style="margin: 0; padding-left: 20px; list-style: none;">
+                        <li style="margin-bottom: 4px;">✓ Fill your details above</li>
+                        <li style="margin-bottom: 4px;">✓ Click "Confirm & Place Order"</li>
+                        <li style="margin-bottom: 4px;">✓ WhatsApp opens with your order</li>
+                        <li>✓ Send message to confirm</li>
+                    </ul>
+                    <p style="margin: 10px 0 0 0; font-size: 12px; opacity: 0.9;">💡 Orders placed are instantly saved
+                        to our system. No account needed!</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .checkout-form {
+        background: white;
+        padding: 24px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #1f2937;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+        transition: all 0.25s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #1d4ed8;
+        box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        div[style*="grid-template-columns: 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+        }
+    }
+</style>
+
+<!-- WhatsApp Direct Order JavaScript -->
+<script>
+    function showError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = 'background: #fee2e2; color: #991b1b; padding: 12px 14px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #dc2626; font-size: 14px;';
+        errorDiv.textContent = '❌ ' + message;
+
+        const form = document.getElementById('checkoutForm');
+        form.querySelectorAll('div[style*="background: #fee2e2"]').forEach(el => el.remove());
+        form.insertBefore(errorDiv, form.firstChild);
+
+        setTimeout(() => errorDiv.remove(), 5000);
+    }
+
+    document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const address = document.getElementById('address').value.trim();
+
+        console.log('[CHECKOUT] Form submission started');
+        console.log('[CHECKOUT] Cart Data Available:', window.cartData);
+        console.log('[CHECKOUT] Cart Data Type:', typeof window.cartData);
+        console.log('[CHECKOUT] Has products property:', window.cartData && 'products' in window.cartData);
+
+        if (!name) {
+            showError('Please enter your full name');
+            return;
+        }
+        if (!phone) {
+            showError('Please enter your phone number');
+            return;
+        }
+        if (!address) {
+            showError('Please enter your delivery address');
+            return;
+        }
+        if (phone.length !== 10 || !/^\d+$/.test(phone)) {
+            showError('Phone must be 10 digits');
+            return;
+        }
+
+        // Check if cart data is available and has products
+        if (!window.cartData) {
+            console.error('[CHECKOUT] ❌ window.cartData is undefined');
+            showError('Cart data not available. Please refresh the page.');
+            return;
+        }
+
+        if (!window.cartData.products || window.cartData.products.length === 0) {
+            console.error('[CHECKOUT] ❌ Cart is empty:', window.cartData);
+            showError('Your cart is empty. Please add items before checking out.');
+            return;
+        }
+
+        console.log('[CHECKOUT] ✅ Cart validation passed');
+        console.log('[CHECKOUT] Items in cart:', window.cartData.products.length);
+
+        const btn = document.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = '📱 Opening WhatsApp...';
+
+        try {
+            const cartItems = convertCartData(window.cartData.products);
+            const total = window.cartData.total;
+
+            console.log('[CHECKOUT] Cart Items Extracted:', cartItems);
+            console.log('[CHECKOUT] Total:', total);
+
+            const message = generateWhatsAppMessage(name, phone, address, cartItems, total);
+            console.log('[CHECKOUT] Generated Message:', message);
+
+            const whatsappNumber = '919409415293';
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappLink, '_blank');
+
+            setTimeout(() => {
+                this.reset();
+                btn.disabled = false;
+                btn.textContent = originalText;
+
+                const successDiv = document.createElement('div');
+                successDiv.style.cssText = 'background: #dcfce7; color: #166534; padding: 12px 14px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #16a34a; font-size: 14px;';
+                successDiv.textContent = '✅ Order sent to WhatsApp! Our team will confirm shortly.';
+                const form = document.getElementById('checkoutForm');
+                form.insertBefore(successDiv, form.firstChild);
+
+                setTimeout(() => successDiv.remove(), 7000);
+            }, 800);
+
+        } catch (error) {
+            console.error('[CHECKOUT] ❌ Error generating order:', error);
+            console.error('[CHECKOUT] Error stack:', error.stack);
+            showError('Unable to generate order. Please try again.');
+            btn.disabled = false;
+            btn.textContent = originalText;
+        }
+    });
+
+    function convertCartData(products) {
+        return products.map(product => ({
+            product_name: product.name,
+            quantity: product.qty,
+            price: parseFloat(product.price),
+            subtotal: parseFloat(product.subtotal)
+        }));
+    }
+
+    function generateWhatsAppMessage(name, phone, address, items, total) {
+        let message = `New Order Received\n\n`;
+        message += `Name: ${name}\n`;
+        message += `Phone: ${phone}\n`;
+        message += `Address: ${address}\n\n`;
+        message += `Items:\n`;
+
+        items.forEach((item) => {
+            message += `- ${item.product_name} (Qty: ${item.quantity}) Rs ${item.price.toFixed(2)}\n`;
+        });
+
+        message += `\nTotal: Rs ${total.toFixed(2)}`;
+        return message;
+    }
+</script>
+
+{% endblock %}

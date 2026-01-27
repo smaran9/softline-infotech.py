@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container" style="max-width: 600px; text-align: center;">
+        <div style="padding: 60px 20px;">
+            <div style="font-size: 72px; margin-bottom: 16px;">🔍</div>
+            <h1 class="section-title" style="margin: 0 0 16px 0;">Page Not Found</h1>
+            <p style="color: var(--text-light); font-size: 16px; margin-bottom: 32px;">
+                {{ message or "Sorry, the page you're looking for doesn't exist." }}
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="/" class="btn" style="padding: 12px 24px;">← Go to Home</a>
+                <a href="/products" class="btn" style="padding: 12px 24px; background: #059669;">Browse Products</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

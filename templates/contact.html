@@ -1,0 +1,965 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ================= CONTACT HERO ================= -->
+<section class="contact-hero">
+    <div class="hero-background">
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+    </div>
+    <div class="container">
+        <div class="hero-content" style="text-align: center; position: relative; z-index: 2;">
+            <h1 class="hero-title">Get In Touch</h1>
+            <p class="hero-subtitle">
+                Have questions? Need a service? We're here to help.
+                Reach out to us and we'll respond within hours.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CONTACT CONTENT ================= -->
+<section class="section contact-section">
+    <div class="container">
+        <div class="contact-grid">
+
+            <!-- LEFT: CONTACT DETAILS -->
+            <div class="contact-info-card">
+                <div class="info-header">
+                    <h2>📞 Contact Information</h2>
+                </div>
+
+                <!-- PHONE -->
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h3>Phone</h3>
+                        <p>
+                            <a href="tel:+919409415293">+91 94094 15293</a><br>
+                            <a href="tel:+918238070293">+91 82380 70293</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- WHATSAPP -->
+                <div class="contact-item">
+                    <div class="contact-icon whatsapp-icon">💬</div>
+                    <div class="contact-details">
+                        <h3>WhatsApp</h3>
+                        <p>
+                            <a href="https://wa.me/919409415293" target="_blank">+91 94094 15293</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ADDRESS -->
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>Address</h3>
+                        <p>Himmatnagar, Gujarat, India</p>
+                    </div>
+                </div>
+
+                <!-- EMAIL (if available) -->
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p>Contact via phone or WhatsApp</p>
+                    </div>
+                </div>
+
+                <!-- RESPONSE TIME -->
+                <div class="response-time">
+                    <div class="response-icon">⚡</div>
+                    <div>
+                        <h4>Quick Response</h4>
+                        <p>We typically respond within a few hours</p>
+                    </div>
+                </div>
+
+                <!-- CTA BUTTONS -->
+                <div class="contact-cta-buttons">
+                    <a href="https://wa.me/919409415293" target="_blank" class="btn-whatsapp">
+                        <span>💬</span> WhatsApp Now
+                    </a>
+                    <a href="tel:+919409415293" class="btn-call">
+                        <span>📞</span> Call Now
+                    </a>
+                </div>
+            </div>
+
+            <!-- RIGHT: CONTACT FORM -->
+            <div class="contact-form-card">
+                <div class="form-header">
+                    <h2>Send Us a Message</h2>
+                    <p>We'd love to hear from you. Drop us a line!</p>
+                </div>
+
+                <form id="whatsappForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">
+                            <span class="label-icon">👤</span>
+                            Your Name
+                        </label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">
+                            <span class="label-icon">📱</span>
+                            Phone Number
+                        </label>
+                        <input type="tel" id="phone" name="phone" placeholder="9876543210" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="label-icon">✉️</span>
+                            Email (Optional)
+                        </label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">
+                            <span class="label-icon">🔧</span>
+                            Service Type
+                        </label>
+                        <select id="service" name="service">
+                            <option value="">-- Select a service --</option>
+                            <option value="cctv-installation">CCTV Installation</option>
+                            <option value="cctv-repair">CCTV Repair & Maintenance</option>
+                            <option value="laptop-repair">Laptop Repair & Upgrades</option>
+                            <option value="accessories">Genuine Accessories</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">
+                            <span class="label-icon">💬</span>
+                            Your Message
+                        </label>
+                        <textarea id="message" name="message"
+                            placeholder="Tell us about your inquiry or what you need help with..." rows="5"
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <span>✉️</span> Send Message
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= WHY CONTACT US ================= -->
+<section class="section why-contact-section">
+    <div class="container">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <p class="section-subtitle">Professional service with proven results</p>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Quick Response</h3>
+                <p>We reply within a few hours, every time.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">✅</div>
+                <h3>Expert Service</h3>
+                <p>Decades of experience in security and tech.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">💬</div>
+                <h3>Free Consultation</h3>
+                <p>Get professional advice with no obligation.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h3>Trusted Since 1996</h3>
+                <p>Serving customers for over 25 years.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FAQ SECTION ================= -->
+<section class="section faq-section">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">❓</span>
+                    <h3>How quickly can you respond?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>We typically respond to inquiries within a few hours during business hours. For urgent matters,
+                        call us directly.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">📞</span>
+                    <h3>What's the best way to reach you?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>WhatsApp or direct call works best for quick response. Use the contact form for detailed
+                        inquiries.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">💰</span>
+                    <h3>Do you offer free consultations?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We provide free initial consultation to understand your needs and provide the best solution.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">🏠</span>
+                    <h3>Do you provide on-site service?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We offer fast on-site support throughout Himmatnagar and nearby areas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CONTACT CTA ================= -->
+<section class="section contact-cta-final">
+    <div class="container">
+        <div class="cta-box">
+            <h2>Ready to Get Started?</h2>
+            <p>Choose your preferred way to connect with us</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/919409415293" target="_blank" class="cta-btn whatsapp">
+                    <span>💬</span> Chat on WhatsApp
+                </a>
+                <a href="tel:+919409415293" class="cta-btn call">
+                    <span>📞</span> Call Us
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ============= CONTACT HERO ============= */
+    .contact-hero {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--primary) 0%, #1a4d8f 100%);
+        color: var(--white);
+        padding: clamp(60px, 15vh, 100px) clamp(12px, 4vw, 24px);
+        text-align: center;
+    }
+
+    .contact-hero .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .contact-hero .hero-blob {
+        position: absolute;
+        filter: blur(100px);
+        opacity: 0.2;
+        animation: blob-animation 8s infinite;
+    }
+
+    .contact-hero .hero-blob-1 {
+        width: 250px;
+        height: 250px;
+        background: rgba(255, 255, 255, 0.4);
+        top: -80px;
+        right: -50px;
+    }
+
+    .contact-hero .hero-blob-2 {
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.2);
+        bottom: -60px;
+        left: -50px;
+        animation-delay: 3s;
+    }
+
+    .contact-hero .hero-title {
+        font-size: clamp(32px, 8vw, 48px);
+        font-weight: 800;
+        margin-bottom: 12px;
+        line-height: 1.2;
+    }
+
+    .contact-hero .hero-subtitle {
+        font-size: clamp(14px, 3.5vw, 18px);
+        color: rgba(255, 255, 255, 0.95);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    /* ============= CONTACT SECTION ============= */
+    .contact-section {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(32px, 6vw, 48px);
+        align-items: start;
+    }
+
+    /* ============= CONTACT INFO CARD ============= */
+    .contact-info-card {
+        background: var(--white);
+        padding: clamp(28px, 5vw, 36px);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border);
+        animation: fade-slide-up 0.6s ease-out;
+    }
+
+    .info-header {
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--bg-light);
+    }
+
+    .info-header h2 {
+        font-size: clamp(18px, 4vw, 22px);
+        font-weight: 700;
+        color: var(--primary);
+        margin: 0;
+    }
+
+    .contact-item {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--bg-light);
+        transition: all 0.3s ease;
+    }
+
+    .contact-item:last-of-type {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .contact-item:hover {
+        transform: translateX(4px);
+    }
+
+    .contact-icon {
+        font-size: 32px;
+        min-width: 40px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    .contact-icon.whatsapp-icon {
+        color: #25d366;
+    }
+
+    .contact-details h3 {
+        font-size: clamp(14px, 3vw, 16px);
+        font-weight: 700;
+        color: var(--primary);
+        margin: 0 0 6px 0;
+    }
+
+    .contact-details p {
+        font-size: clamp(13px, 3vw, 15px);
+        color: var(--text-light);
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .contact-details a {
+        color: var(--secondary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .contact-details a:hover {
+        text-decoration: underline;
+        color: #154fb6;
+    }
+
+    .response-time {
+        display: flex;
+        gap: 16px;
+        background: var(--bg-light);
+        padding: 20px;
+        border-radius: var(--radius-md);
+        border-left: 4px solid var(--secondary);
+        margin: 24px 0;
+    }
+
+    .response-icon {
+        font-size: 28px;
+        min-width: 32px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    .response-time h4 {
+        font-size: clamp(14px, 3vw, 15px);
+        font-weight: 700;
+        color: var(--primary);
+        margin: 0 0 4px 0;
+    }
+
+    .response-time p {
+        font-size: clamp(12px, 2.5vw, 13px);
+        color: var(--text-light);
+        margin: 0;
+    }
+
+    .contact-cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .btn-whatsapp,
+    .btn-call {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: clamp(12px, 2.5vh, 14px) clamp(16px, 3vw, 20px);
+        border-radius: var(--radius-sm);
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: clamp(13px, 3vw, 15px);
+    }
+
+    .btn-whatsapp {
+        background: #25d366;
+        color: white;
+        border: 2px solid #25d366;
+    }
+
+    .btn-whatsapp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(37, 211, 102, 0.3);
+        background: #20ba5a;
+    }
+
+    .btn-call {
+        background: var(--secondary);
+        color: white;
+        border: 2px solid var(--secondary);
+    }
+
+    .btn-call:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(29, 78, 216, 0.3);
+        background: #154fb6;
+    }
+
+    /* ============= CONTACT FORM CARD ============= */
+    .contact-form-card {
+        background: var(--white);
+        padding: clamp(28px, 5vw, 36px);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border);
+        animation: fade-slide-up 0.6s ease-out 0.1s backwards;
+    }
+
+    .form-header {
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--bg-light);
+    }
+
+    .form-header h2 {
+        font-size: clamp(18px, 4vw, 22px);
+        font-weight: 700;
+        color: var(--primary);
+        margin: 0 0 8px 0;
+    }
+
+    .form-header p {
+        font-size: clamp(13px, 3vw, 14px);
+        color: var(--text-light);
+        margin: 0;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: clamp(13px, 3vw, 14px);
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
+    }
+
+    .label-icon {
+        font-size: 16px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: clamp(11px, 2.5vh, 13px) clamp(12px, 2vw, 14px);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: clamp(13px, 3vw, 15px);
+        font-family: inherit;
+        transition: all 0.3s ease;
+        background: white;
+        color: var(--text);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+        color: var(--text-light);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: var(--secondary);
+        box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+        background: rgba(29, 78, 216, 0.02);
+    }
+
+    .form-group select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f2937' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 20px;
+        padding-right: 36px;
+    }
+
+    .btn-submit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: clamp(13px, 2.5vh, 15px) clamp(20px, 3vw, 24px);
+        margin-top: 12px;
+        background: linear-gradient(135deg, var(--secondary) 0%, #154fb6 100%);
+        color: white;
+        border: none;
+        border-radius: var(--radius-sm);
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: clamp(14px, 3vw, 16px);
+        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(29, 78, 216, 0.3);
+    }
+
+    .btn-submit:active {
+        transform: translateY(0);
+    }
+
+    /* ============= WHY CONTACT SECTION ============= */
+    .why-contact-section {
+        background: linear-gradient(135deg, var(--primary) 0%, #1a4d8f 100%);
+    }
+
+    .why-contact-section .section-title {
+        color: var(--white);
+    }
+
+    .why-contact-section .section-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: clamp(20px, 4vw, 28px);
+    }
+
+    .benefit-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: clamp(24px, 4vw, 28px);
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+        transition: all 0.3s ease;
+        animation: fade-slide-up 0.6s ease-out backwards;
+    }
+
+    .benefit-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .benefit-card:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+
+    .benefit-card:nth-child(3) {
+        animation-delay: 0.2s;
+    }
+
+    .benefit-card:nth-child(4) {
+        animation-delay: 0.25s;
+    }
+
+    .benefit-card:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-8px);
+    }
+
+    .benefit-icon {
+        font-size: clamp(36px, 8vw, 44px);
+        margin-bottom: 12px;
+        display: inline-block;
+    }
+
+    .benefit-card h3 {
+        font-size: clamp(16px, 3.5vw, 18px);
+        font-weight: 700;
+        color: var(--white);
+        margin: 0 0 8px 0;
+    }
+
+    .benefit-card p {
+        font-size: clamp(13px, 3vw, 14px);
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+    }
+
+    /* ============= FAQ SECTION ============= */
+    .faq-section {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+
+    .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: clamp(20px, 4vw, 28px);
+    }
+
+    .faq-item {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease;
+        animation: fade-slide-up 0.6s ease-out backwards;
+    }
+
+    .faq-item:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .faq-item:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+
+    .faq-item:nth-child(3) {
+        animation-delay: 0.2s;
+    }
+
+    .faq-item:nth-child(4) {
+        animation-delay: 0.25s;
+    }
+
+    .faq-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--secondary);
+    }
+
+    .faq-question {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: clamp(20px, 4vw, 24px);
+        background: var(--bg-light);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+        background: rgba(29, 78, 216, 0.05);
+    }
+
+    .faq-icon {
+        font-size: 24px;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .faq-question h3 {
+        font-size: clamp(14px, 3.5vw, 16px);
+        font-weight: 700;
+        color: var(--primary);
+        margin: 0;
+    }
+
+    .faq-answer {
+        padding: clamp(16px, 4vw, 20px);
+    }
+
+    .faq-answer p {
+        font-size: clamp(13px, 3vw, 15px);
+        color: var(--text-light);
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    /* ============= CONTACT CTA FINAL ============= */
+    .contact-cta-final {
+        background: linear-gradient(135deg, var(--secondary) 0%, #154fb6 100%);
+        color: var(--white);
+        text-align: center;
+    }
+
+    .cta-box {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .contact-cta-final h2 {
+        font-size: clamp(28px, 6vw, 36px);
+        font-weight: 800;
+        margin-bottom: 12px;
+    }
+
+    .contact-cta-final p {
+        font-size: clamp(14px, 3.5vw, 16px);
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 28px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: clamp(12px, 3vw, 20px);
+        flex-wrap: wrap;
+    }
+
+    .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: clamp(13px, 2.5vh, 16px) clamp(20px, 4vw, 28px);
+        border-radius: var(--radius-sm);
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: clamp(13px, 3vw, 15px);
+        border: 2px solid white;
+    }
+
+    .cta-btn.whatsapp {
+        background: #25d366;
+        color: white;
+        border-color: #25d366;
+    }
+
+    .cta-btn.whatsapp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        background: #20ba5a;
+    }
+
+    .cta-btn.call {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .cta-btn.call:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.6);
+        transform: translateY(-2px);
+    }
+
+    /* ============= RESPONSIVE ============= */
+    @media (max-width: 768px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+            gap: clamp(24px, 4vh, 32px);
+        }
+
+        .benefits-grid {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+        .faq-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+        }
+
+        .cta-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .contact-cta-buttons {
+            width: 100%;
+        }
+
+        .btn-whatsapp,
+        .btn-call {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-hero {
+            padding: clamp(40px, 10vh, 60px) clamp(12px, 4vw, 24px);
+        }
+
+        .contact-info-card,
+        .contact-form-card {
+            padding: clamp(20px, 3vw, 24px);
+        }
+
+        .contact-item {
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 16px;
+        }
+
+        .contact-icon {
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .response-time {
+            margin: 18px 0;
+            padding: 16px;
+        }
+
+        .benefits-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .benefit-card {
+            padding: clamp(18px, 3vw, 24px);
+        }
+
+        .faq-question {
+            padding: clamp(16px, 3vw, 20px);
+        }
+
+        .faq-answer {
+            padding: clamp(12px, 3vw, 16px);
+        }
+    }
+
+    /* ============= ANIMATIONS ============= */
+    @keyframes fade-slide-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes blob-animation {
+
+        0%,
+        100% {
+            transform: translate(0, 0);
+        }
+
+        50% {
+            transform: translate(30px, -30px);
+        }
+    }
+
+    /* ============= ACCESSIBILITY ============= */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+</style>
+
+<script>
+    document.getElementById('whatsappForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const service = document.getElementById('service').value;
+        const message = document.getElementById('message').value.trim();
+
+        const serviceLabel = document.getElementById('service').options[document.getElementById('service').selectedIndex].text;
+
+        const whatsappMessage = `Hello,\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email || 'Not provided'}\nService: ${serviceLabel}\n\nMessage:\n${message}`;
+
+        const whatsappNumber = '919409415293';
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+        window.open(whatsappUrl, '_blank');
+
+        this.reset();
+    });
+</script>
+
+{% endblock %}

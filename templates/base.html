@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Softline Infotech | CCTV & Laptop Repair Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Softline Infotech provides professional CCTV installation, CCTV repair, laptop repair and genuine accessories. Trusted since 1996.">
+    <meta name="author" content="Softline Infotech">
+    
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+
+<body>
+    
+
+<header class="header">
+    <div class="container header-flex">
+
+        <!-- ONLY ONE LOGO (IMAGE) -->
+       <a href="/" class="brand">
+    <img src="{{ url_for('static', filename='images/logo.png') }}"
+         alt="Softline Infotech Logo">
+    <span>Softline Infotech</span>
+</a>
+
+        <nav aria-label="Main Navigation">
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/products">Shop</a>
+            
+            {% if session.get("is_admin") %}
+    <a href="/admin">Admin</a>
+    <a href="/admin/logout">Logout</a>
+{% else %}
+    
+{% endif %}
+
+            <a href="/cart">
+                Cart
+                {% if session.get('cart') %}
+                    <span class="cart-count">{{ session['cart']|length }}</span>
+                {% endif %}
+            </a>
+
+            <a href="/about">About</a>
+            <a href="/contact" class="btn-small">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <p>© 1996–{{ current_year if current_year else "2026" }} Softline Infotech. All Rights Reserved.</p>
+</footer>
+
+<a class="whatsapp-btn"
+   href="https://wa.me/919409415293"
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+    WhatsApp
+</a>
+
+</body>
+</html>
