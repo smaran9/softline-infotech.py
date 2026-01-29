@@ -1974,6 +1974,7 @@ nav a {
     display: flex;
     gap: 12px;
     align-items: flex-start;
+    flex-wrap:wrap;
 }
 
 .contact-icon a {
