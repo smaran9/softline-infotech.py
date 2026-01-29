@@ -324,8 +324,19 @@ nav a:hover {
 /* ============= GRIDS ============= */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 28px;
+}
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .product-grid {
@@ -1860,4 +1871,123 @@ nav a {
     .cta-content {
         flex-direction: column;
     }
+}
+
+/* ============= GOOGLE REVIEWS SECTION (LIVE GOOGLE MAPS EMBED) ============= */
+
+/* ================= GOOGLE REVIEWS SECTION ================= */
+
+.google-reviews-section {
+    background: linear-gradient(135deg, rgba(13, 27, 42, 0.03) 0%, rgba(29, 78, 216, 0.03) 100%);
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Google Reviews Card Container - Clean, Simple Layout */
+.google-reviews-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 40px 32px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-reviews-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Clean Button Styling */
+.btn-reviews {
+    display: inline-block;
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    color: var(--white);
+    padding: 14px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-reviews:hover {
+    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    box-shadow: 0 6px 16px rgba(29, 78, 216, 0.35);
+    transform: translateY(-2px);
+}
+
+.btn-reviews:active {
+    box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
+    transform: translateY(0);
+}
+
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+
+/* Tablet & Small Desktop */
+@media (min-width: 768px) {
+    .google-reviews-section {
+        padding: 80px 0;
+    }
+
+    .google-reviews-card {
+        padding: 48px 40px;
+    }
+
+    .btn-reviews {
+        padding: 14px 48px;
+        font-size: 16px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .google-reviews-section {
+        padding: 100px 0;
+    }
+
+    .google-reviews-card {
+        padding: 56px 48px;
+    }
+
+    .btn-reviews {
+        padding: 16px 56px;
+        font-size: 17px;
+    }
+}
+/* ===== Contact Location Link ===== */
+
+.contact-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.contact-icon a {
+    font-size: 22px;
+    text-decoration: none;
+    color: #e63946;
+}
+
+.contact-details a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
 }

@@ -17,7 +17,7 @@ app.secret_key = os.getenv("SECRET_KEY", "change_me_in_production")
 
 # Ensure upload folder exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
+ 
 # ====== ADMIN CREDENTIALS (from environment variables) ======
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "softline_admin")
 ADMIN_PASSWORD_HASH = generate_password_hash(os.getenv("ADMIN_PASSWORD", "admin@123"))
