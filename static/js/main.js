@@ -19,3 +19,15 @@ function sendWhatsAppMessage(event) {
 
     window.open(url, "_blank");
 }
+
+// Navbar active link highlighting
+document.addEventListener('DOMContentLoaded', function () {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('nav .nav-link');
+
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});

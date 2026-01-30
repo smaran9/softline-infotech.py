@@ -174,15 +174,89 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
-    transition: var(--transition);
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
 nav a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+nav a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact button special styling */
+nav a.btn-small {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border: 1px solid #f59e0b;
+    color: white;
+    animation: contactPulse 2s infinite;
+    font-weight: 700;
+}
+
+nav a.btn-small:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+@keyframes contactPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    }
+}
+
+nav a.btn-small.active {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    animation: none;
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+}
+
+/* Active nav link styles */
+.nav-link {
+    position: relative;
+}
+
+.nav-link.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.3), rgba(96, 165, 250, 0.2));
+    border-color: rgba(96, 165, 250, 0.5);
+    box-shadow: 0 4px 16px rgba(96, 165, 250, 0.3);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #60a5fa;
+    transition: width 0.3s ease;
+}
+
+.nav-link.active::after {
+    width: 100%;
 }
 
 /* Cart count badge */
@@ -327,6 +401,7 @@ nav a:hover {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 28px;
 }
+
 @media (max-width: 1024px) {
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1968,13 +2043,25 @@ nav a {
         font-size: 17px;
     }
 }
+
 /* ===== Contact Location Link ===== */
 
 .contact-item {
     display: flex;
     gap: 12px;
     align-items: flex-start;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
+}
+
+.contact-item a {
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+}
+
+.contact-section {
+    position: relative;
+    z-index: 1;
 }
 
 .contact-icon a {
