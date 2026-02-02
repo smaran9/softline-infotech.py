@@ -383,7 +383,7 @@ price (DECIMAL)
 - **Version**: 1.0 (Production Ready)
 - **Maintained by**: Development Team
 
-For issues or questions, contact: support@softlineinfotech.com
+For issues or questions, contact: bhattsmaran99@gmail.com
 
 ---
 
