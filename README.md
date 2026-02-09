@@ -225,7 +225,7 @@ ADMIN_PASSWORD_HASH = os.getenv('ADMIN_PASSWORD_HASH', generate_password_hash('a
 - `/order-success/<id>` - Order confirmation
 
 ### Admin Routes
-- `/softline-control-panel-94xk` - Admin login
+- `/softline-control-panel-94xy` - Admin login
 - `/admin` - Admin dashboard (protected)
 - `/admin/add-product` - Add product form (protected)
 - `/admin/delete-product/<id>` - Delete product (protected)
